@@ -1,0 +1,8 @@
+package com.example.springSecurity;
+
+import org.springframework.data.repository.CrudRepository;
+
+public abstract interface userRepo extends  CrudRepository<User, Long>{
+
+	User findByUsername(String username);
+}

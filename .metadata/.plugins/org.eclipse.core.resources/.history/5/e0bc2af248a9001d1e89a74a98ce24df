@@ -1,0 +1,8 @@
+package com.example.springSecurity;
+
+public class demo2 extends demo1 {
+	public int m1(int a1,int a2) {
+		return a1*a2;
+	}
+
+}

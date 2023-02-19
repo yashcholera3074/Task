@@ -1,0 +1,22 @@
+package com.questionPro.task.IntFc;
+
+import java.util.Map;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+public abstract interface QuestionPro {
+
+	@GetMapping("/top-stories")
+	public abstract Map<String ,Object> topStories();
+	
+	@GetMapping("/past-stories")
+	public abstract Map<String ,Object> pastStories(@RequestBody Map<String, String> orderContext);
+	
+	@GetMapping("/comments")
+	public abstract Map<String ,Object> comments(@RequestBody Map<String, String> orderContext);
+	
+	/*@RequestMapping("/clearCache")
+	public abstract void clearCache();*/
+}

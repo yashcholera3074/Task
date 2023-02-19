@@ -1,0 +1,8 @@
+package com.questionPro.task.Entity;
+
+import java.io.Serializable;
+
+public final class Story implements Serializable{
+	private static final long serialVersionUID = 1L;
+	private long seqId;
+}

@@ -1,0 +1,19 @@
+package com.questionPro.task.IntFc;
+
+import java.util.Map;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+public abstract interface QuestionPro {
+
+	@GetMapping("/top-stories")
+	public abstract Map<String ,Object> topStories();
+	
+	@GetMapping("/past-stories")
+	public abstract Map<String ,Object> pastStories();
+	
+	@GetMapping("/comments")
+	public abstract Map<String ,Object> comments(@RequestParam int storyId);
+	
+}

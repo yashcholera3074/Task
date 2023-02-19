@@ -1,0 +1,7 @@
+package com.example.springSecurity;
+
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
+
+public class MyUserDetailService extends UserDetailsServiceAutoConfiguration {
+
+}

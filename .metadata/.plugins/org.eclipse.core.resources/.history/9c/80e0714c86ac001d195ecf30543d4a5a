@@ -1,0 +1,76 @@
+package com.questionPro.task.Controller;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.questionPro.task.Entity.Story;
+import com.questionPro.task.IntFc.QuestionPro;
+import com.questionPro.task.Repo.StoryRepo;
+
+@RestController
+public class QuestionProController implements QuestionPro {
+
+	@Autowired
+	StoryRepo storyRepo;
+	
+	@Override
+	public Map<String ,Object> topStories() {
+		Map<String ,Object> resultMap= new HashMap<>();
+		final String url="https://hacker-news.firebaseio.com/v0/topstories.json";
+		
+		RestTemplate restTemplate = new RestTemplate();
+		String result= restTemplate.getForObject(url, String.class);
+		System.out.println(result);
+		result=result.replaceAll("[\\[\\]]","");
+		String[] ls=result.split(",");
+		String storyUrl="https://hacker-news.firebaseio.com/v0/item/";
+		/*for(int i=0;i<ls.length;i++) {
+			String storyResult=restTemplate.getForObject(storyUrl+ls[i]+".json", String.class);
+			System.out.println(storyResult);
+			JSONObject jsonObject = new JSONObject(storyResult);
+			Story story= new Story();
+			try {
+			story.setCreatedDate(new Date());
+			story.setScore(jsonObject.getInt("score"));
+			story.setCreateBy("Yash");
+			story.setStoryId(jsonObject.getInt("id"));
+			story.setTitle(jsonObject.getString("title"));
+			story.setUrl(jsonObject.getString("url"));
+			storyRepo.save(story);
+			}catch (Exception e) {
+				System.out.println("Exception in persisting"+ jsonObject.getInt("id"));
+			}
+			
+			
+		}*/
+		List<Story> topStories= storyRepo.findTop10OrderByScoreDesc();
+		if(topStories!=null && !topStories.isEmpty()) {
+			System.out.println(topStories.size());
+		}
+		else {
+			System.out.println("No stories found");
+		}
+		
+		return resultMap;
+	}
+
+	@Override
+	public Map<String, Object> pastStories(Map<String, String> orderContext) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<String, Object> comments(Map<String, String> orderContext) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

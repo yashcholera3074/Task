@@ -1,0 +1,25 @@
+package com.questionPro.task.Repo;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+
+import com.questionPro.task.Entity.Story;
+
+import jakarta.transaction.Transactional;
+
+public abstract interface StoryRepo extends CrudRepository<Story, Long> {
+	
+	@Query("from Story order by score desc LIMIT 10")
+	List<Story> findTop10OrderByScoreDesc();
+	
+	@Modifying
+	@Transactional
+    @Query(
+            value = "truncate table Story",
+            nativeQuery = true
+    )
+    void truncateMyTable();
+}

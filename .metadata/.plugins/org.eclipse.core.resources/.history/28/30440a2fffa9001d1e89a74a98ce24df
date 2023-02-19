@@ -1,0 +1,30 @@
+package com.example.springSecurity;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+@Service
+public class MyUserDetailService implements UserDetailsService {
+
+	@Autowired
+	userRepo userRepo;
+	
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		User user1= new User();
+		user1.setUsername("Yash");
+		user1.setPassword("$2a$10$WUln.e7ASCkvXgeeTIfB0eP4eLJyOmgNqky9f.zWGI.2TGXyy.3Pe");
+		userRepo.save(user1);
+		User user= userRepo.findByUsername(username);
+		System.out.println(user.getUsername());
+		if (user==null)
+			throw new UsernameNotFoundException("User 404");
+		
+		
+		return new UserDetailsImpl(user);
+	}
+
+}

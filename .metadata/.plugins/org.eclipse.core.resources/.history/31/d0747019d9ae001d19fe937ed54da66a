@@ -1,0 +1,5 @@
+package com.questionPro.task.Repo;
+
+public interface CommentRepo {
+
+}

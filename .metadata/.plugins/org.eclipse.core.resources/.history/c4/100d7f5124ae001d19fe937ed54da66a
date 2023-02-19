@@ -1,0 +1,9 @@
+package com.questionPro.task.Repo;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.questionPro.task.Entity.PastStory;
+
+public abstract interface PastStoryRepo extends CrudRepository<PastStory, Long> {
+
+}

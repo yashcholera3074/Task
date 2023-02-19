@@ -1,0 +1,36 @@
+package com.example.springSecurity;
+
+
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+
+
+@Configuration
+@EnableWebSecurity
+public class EnableSpringSecurity {
+
+	/*
+	@Bean
+	@Override
+	protected UserDetailsService userDetailsService() {
+		
+		List<UserDetails> users= new ArrayList<>();
+		
+		users.add(User.withDefaultPasswordEncoder().username("Yash").password("Y123").roles("ADMIN").build());
+		return new InMemoryUserDetailsManager(users);
+	}*/
+	
+	@Bean
+	public AuthenticationProvider authProvider() {
+		DaoAuthenticationProvider daoProvide= new DaoAuthenticationProvider();
+		
+		return daoProvide;
+	}
+
+	
+	
+}

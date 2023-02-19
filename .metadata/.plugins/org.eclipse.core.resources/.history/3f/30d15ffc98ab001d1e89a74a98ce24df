@@ -1,0 +1,20 @@
+package com.questionPro.task.IntFc;
+
+import java.util.Map;
+
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+public abstract interface QuestionPro {
+
+	@PostMapping(value="/top-stories ", consumes= MediaType.APPLICATION_JSON_VALUE, produces =MediaType.APPLICATION_JSON_VALUE)
+	public abstract Map<String ,Object> topStories(@RequestBody Map<String, String> orderContext);
+	
+	@PostMapping(value="/past-stories", consumes= MediaType.APPLICATION_JSON_VALUE, produces =MediaType.APPLICATION_JSON_VALUE)
+	public abstract Map<String ,Object> pastStories(@RequestBody Map<String, String> orderContext);
+	
+	@PostMapping(value="/comments", consumes= MediaType.APPLICATION_JSON_VALUE, produces =MediaType.APPLICATION_JSON_VALUE)
+	public abstract Map<String ,Object> comments(@RequestBody Map<String, String> orderContext);
+	
+}

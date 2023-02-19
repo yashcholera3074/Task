@@ -1,0 +1,11 @@
+package com.questionPro.task.Repo;
+
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.questionPro.task.Entity.Story;
+
+public abstract interface StoryRepo extends CrudRepository<Story, Long> {
+	List<Story> findTop10OrderByScoreDesc();
+}

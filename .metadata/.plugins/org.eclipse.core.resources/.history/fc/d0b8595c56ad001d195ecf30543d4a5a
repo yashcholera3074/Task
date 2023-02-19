@@ -1,0 +1,13 @@
+package com.questionPro.task.cache;
+
+public class CachingConfig {
+	@Configuration
+	@EnableCaching
+	public class CachingConfig {
+
+	    @Bean
+	    public CacheManager cacheManager() {
+	        return new ConcurrentMapCacheManager("topStoriesCache");
+	    }
+	}
+}
